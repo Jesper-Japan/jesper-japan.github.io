@@ -22,9 +22,9 @@
     <script language="JavaScript">
         function loadBgmFromXml(data) {
             debugger
-            if(getElementsByTagName("src")[0].textContent) {
+            if(data.getElementsByTagName("src")[0].textContent) {
                 var player = document.getElementById("musicPlayer")
-                player.src = getElementsByTagName("src")[0].textContent
+                player.src = data.getElementsByTagName("src")[0].textContent
             } else {
                 // No music available - write sad message on screen
 
