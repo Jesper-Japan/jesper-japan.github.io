@@ -6,10 +6,6 @@
         <script type="text/javascript" src="https://cdn.pannellum.org/2.2/pannellum.js"></script>
     </head>
     <body>
-        <audio controls>
-            <source id="musicPlayer" type="audio/mpeg"> 
-            Your browser does not support the audio element.
-         </audio> 
         <h3>Slideshow Assignment for 4 Colors</h3>,
         <div id="img">
             <img src="AfrikanerPiger.jpg" alt="African Girls" width="500" height="600">
@@ -23,8 +19,8 @@
         function loadBgmFromXml(data) {
             debugger
             if(data.getElementsByTagName("src")[0].textContent) {
-                var player = document.getElementById("musicPlayer")
-                player.src = data.getElementsByTagName("src")[0].textContent
+                var audio = new Audio(data.getElementsByTagName("src")[0].textContent);
+                audio.play();
             } else {
                 // No music available - write sad message on screen
 
