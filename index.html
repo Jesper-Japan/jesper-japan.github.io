@@ -52,9 +52,9 @@
                 currentSlide--;
                 displayPicture(slides[currentSlide]);
                 if(currentSlide == 0) {
-                    btn.disabled == true;
+                    btn.disabled = true;
                 }
-                if(currentSlide = slideshowLength - 2) {
+                if(currentSlide == slideshowLength - 2) {
                     var nextBtn = document.getElementById("nextBtn");
                     debugger
                     nextBtn.disabled = false;
@@ -75,14 +75,11 @@
         }
 
         function loadslideshowFromXml(data) {
-            debugger
             var images = data.getElementsByTagName("image");
             if(images.length > 0) {
                 for(var i = 0; i < images.length; i++) {
-                    debugger
                     slides[i] = images[i].textContent;
                 }
-                debugger
                 slideshowLength = images.length;
                 displayPicture(slides[0]);
             }else {
@@ -90,8 +87,7 @@
             }
         }
 
-        function handler() {            
-            debugger
+        function handler() {
             if(this.status == 200 &&
                 this.responseXML != null) {
                 if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
