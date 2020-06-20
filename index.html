@@ -7,7 +7,7 @@
     </head>
     <body>
         <audio controls>
-            <source src="Dragon Ball Z Opening - Abridged Androing 13.mp3" type="audio/mpeg">
+            <source id="musicPlayer" type="audio/mpeg"> 
             Your browser does not support the audio element.
          </audio> 
         <h3>Slideshow Assignment for 4 Colors</h3>,
@@ -20,17 +20,40 @@
         </div>
     </body>
     <script language="JavaScript">
-        function processData(data) {
+        function loadBgmFromXml(data) {
             debugger
+            if(getElementsByTagName("src")[0].textContent) {
+                var player = document.getElementById("musicPlayer")
+                player.src = getElementsByTagName("src")[0].textContent
+            } else {
+                // No music available - write sad message on screen
+
+            }
+        }
+
+        function loadImagesFromXml(data) {
         // taking care of data
+
         }
 
         function handler() {            
             debugger
             if(this.status == 200 &&
-                this.responseXML != null &&
-                this.responseXML.getElementById('test').textContent) {
-                    debugger
+                this.responseXML != null) {
+                    if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
+                        loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
+                    } else {
+                        debugger
+                        // No music available
+                    }
+
+                    if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
+                        loadImagesFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
+                    } else {
+                        debugger
+                        // No slides 
+                    }
+                }
                 // success!
                 processData(this.responseXML.getElementById('test').textContent);
             } else {
