@@ -26,7 +26,7 @@
             var newImg = new Image;
             newImg.onload = function() {
                 img.src = this.src;
-                img.hidden = "false";
+                img.removeAttribute("hidden");
             }
             newImg.src = path;
         }
