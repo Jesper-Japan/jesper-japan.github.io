@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<backGroundMusic>
-    <src>Dragon Ball Z Opening - Abridged Androing 13.mp3</src>
-    <autoplay>true</autoplay>
-</backGroundMusic>
-<images>
-    <image>
-        <id>1</id>
-        <path>AfrikanerPiger.jpg</path>
-    </image>
-</images>
+<content>
+    <backGroundMusic>
+        <src>dbz_abridged_op.mp3</src>
+        <autoplay>true</autoplay>
+    </backGroundMusic>
+    <images>
+        <image>
+            <id>1</id>
+            <path>AfrikanerPiger.jpg</path>
+        </image>
+    </images>
+</content>
