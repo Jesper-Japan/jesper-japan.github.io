@@ -2,7 +2,7 @@
 <backGroundMusic>
     <src>Dragon Ball Z Opening - Abridged Androing 13.mp3</src>
     <autoplay>true</autoplay>
-</BackGroundMusic>
+</backGroundMusic>
 <images>
     <image>
         <id>1</id>
