@@ -8,18 +8,47 @@
     <body>
         <h3>Slideshow Assignment for 4 Colors</h3>
         <div id="imgContainer">
-            <img id="img" width="500" height="600">
+            <img id="img" width="500" height="600" hidden="true">
         </div>
         <div id="btns">
-            <button>prev</button>
-            <button>next</button>
+            <button onclick="prevImage()">prev</button>
+            <button onclick="nextImage()">next</button>
             <button onclick="loadSlideshow()">start slideshow</button>
         </div>
     </body>
     <script language="JavaScript">
+        var slides = ["no content"];
+        var slideshowLength = 0;
+        var currentSlide = 0; 
+
+        function displayPicture(path) {
+            var img = document.getElementById('img');
+            var newImg = new Image;
+            newImg.onload = function() {
+                img.src = this.src;
+                img.hidden = "false";
+            }
+            newImg.src = path;
+        }
+
+        function nextImage() {
+            if(currentSlide < slideshowLength) {
+                currentSlide++;
+                displayPicture(slides[currentSlide]);
+            }
+        }
+
+        function prevImage() {
+            if(currentSlide > 0) {
+                currentSlide--;
+                displayPicture(slides[currentSlide]);
+            }
+        }
+
         function loadBgmFromXml(data) {
             if(data.getElementsByTagName("src")[0].textContent) {
                 var audio = new Audio(data.getElementsByTagName("src")[0].textContent);
+                audio.loop = true;
                 audio.play();
             } else {
                 // No music available - write sad message on screen
@@ -27,26 +56,32 @@
             }
         }
 
-        function loadImagesFromXml(data) {
-        // taking care of data     
-        if(data.getElementsByTagName("image")[0].textContent) {
-                var img = document.getElementById('img');
-                var newImg = new Image;
-                newImg.onload = function() {
-                    img.src = this.src;
+        function loadslideshowFromXml(data) {
+            debugger
+            var images = data.getElementsByTagName("image");
+            if(images.length > 0) {
+                for(var i = 0; i < images.length; i++) {
+                    debugger
+                    slides[i] = images[i].textContent;
                 }
-                newImg.src = data.getElementsByTagName("image")[0].getElementsByTagName("path")[0].textContent;
-            } else {
+                debugger
+                slideshowLength = images.length;
+                displayPicture(slides[0]);
+            }else {
                 // No image available - write sad message on screen
-
             }
-
         }
 
         function handler() {            
             debugger
             if(this.status == 200 &&
                 this.responseXML != null) {
+                if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
+                    loadslideshowFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
+                } else {
+                    debugger
+                    // No slides 
+                }
                 if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
                     loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
                 } else {
@@ -54,22 +89,15 @@
                     // No music available
                 }
 
-                if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
-                    loadImagesFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
-                } else {
-                    debugger
-                    // No slides 
-                }
             } else {
                 debugger
-                // something went wrong
+                // Couldn't find or parse xml file 
             }
         }
 
         function loadSlideshow() {
             var client = new XMLHttpRequest();
             client.onload = handler;
-            debugger
             client.open("GET", "content.xml", false);
             client.send();
         }

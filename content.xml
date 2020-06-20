@@ -5,9 +5,8 @@
         <autoplay>true</autoplay>
     </backGroundMusic>
     <slideshow>
-        <image>
-            <id>1</id>
-            <path>AfrikanerPiger.jpg</path>
-        </image>
+        <image>HarajukuGirl.jpg</image>
+        <image>Håndtørrer.jpg</image>
+        <image>AfrikanerPiger.jpg</image>
     </slideshow>
 </content>
