@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Slideshow Assignment</title>
+        <link rel="stylesheet" href="https://cdn.pannellum.org/2.2/pannellum.css"/>
+        <script type="text/javascript" src="https://cdn.pannellum.org/2.2/pannellum.js"></script>
+    </head>
+    <body>
+        <audio controls>
+            <source src="Dragon Ball Z Opening - Abridged Androing 13.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+         </audio> 
+        <h3>Slideshow Assignment for 4 Colors</h3>,
+        <div id="img">
+            <img src="AfrikanerPiger.jpg" alt="African Girls" width="500" height="600">
+        </div>
+        <div id="btns">
+            <button>prev</button>
+            <button>next</button>
+        </div>
+    </body>
+    <script language="JavaScript">
+        function processData(data) {
+            debugger
+        // taking care of data
+        }
+
+        function handler() {
+            if(this.status == 200 &&
+                this.responseXML != null &&
+                this.responseXML.getElementById('test').textContent) {
+                    debugger
+                // success!
+                processData(this.responseXML.getElementById('test').textContent);
+            } else {
+                debugger
+                // something went wrong
+            }
+        }
+
+        var client = new XMLHttpRequest();
+        client.onload = handler;
+        debugger
+        client.open("GET", "content.xml", false);
+        client.send();
+      </script>
+</html>
