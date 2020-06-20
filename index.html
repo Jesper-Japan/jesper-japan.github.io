@@ -11,9 +11,9 @@
             <img id="img" width="500" height="600" hidden="true">
         </div>
         <div id="btns">
-            <button onclick="prevImage()">prev</button>
-            <button onclick="nextImage()">next</button>
-            <button onclick="loadSlideshow()">start slideshow</button>
+            <button id="prevBtn" onclick="prevImage(this)">Prev</button>
+            <button id="nextBtn" onclick="nextImage(this)">Next</button>
+            <button onclick="loadSlideshow(this)">start slideshow</button>
         </div>
     </body>
     <script language="JavaScript">
@@ -31,17 +31,35 @@
             newImg.src = path;
         }
 
-        function nextImage() {
-            if(currentSlide < slideshowLength) {
+        function nextImage(btn) {
+            if(currentSlide < slideshowLength - 1) {
                 currentSlide++;
                 displayPicture(slides[currentSlide]);
+                if(currentSlide == slideshowLength - 1) {
+                    btn.disabled = true;
+                }
+                if(currentSlide = 1) {
+                    var prevBtn = document.getElementById("prevBtn");
+                    debugger
+                    prevBtn.disabled = false;
+                    prevBtn.removeAttribute("disabled");
+                }
             }
         }
 
-        function prevImage() {
+        function prevImage(btn) {
             if(currentSlide > 0) {
                 currentSlide--;
                 displayPicture(slides[currentSlide]);
+                if(currentSlide == 0) {
+                    btn.disabled == true;
+                }
+                if(currentSlide = slideshowLength - 2) {
+                    var nextBtn = document.getElementById("nextBtn");
+                    debugger
+                    nextBtn.disabled = false;
+                    nextBtn.removeAttribute("disabled");
+                }
             }
         }
 
@@ -95,7 +113,8 @@
             }
         }
 
-        function loadSlideshow() {
+        function loadSlideshow(btn) {
+            btn.hidden = true;
             var client = new XMLHttpRequest();
             client.onload = handler;
             client.open("GET", "content.xml", false);
