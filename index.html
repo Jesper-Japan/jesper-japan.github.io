@@ -40,22 +40,19 @@
             debugger
             if(this.status == 200 &&
                 this.responseXML != null) {
-                    if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
-                        loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
-                    } else {
-                        debugger
-                        // No music available
-                    }
-
-                    if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
-                        loadImagesFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
-                    } else {
-                        debugger
-                        // No slides 
-                    }
+                if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
+                    loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
+                } else {
+                    debugger
+                    // No music available
                 }
-                // success!
-                processData(this.responseXML.getElementById('test').textContent);
+
+                if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
+                    loadImagesFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
+                } else {
+                    debugger
+                    // No slides 
+                }
             } else {
                 debugger
                 // something went wrong
