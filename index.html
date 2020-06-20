@@ -13,6 +13,7 @@
         <div id="btns">
             <button>prev</button>
             <button>next</button>
+            <button onclick="loadSlideshow()">start slideshow</button>
         </div>
     </body>
     <script language="JavaScript">
@@ -55,10 +56,12 @@
             }
         }
 
-        var client = new XMLHttpRequest();
-        client.onload = handler;
-        debugger
-        client.open("GET", "content.xml", false);
-        client.send();
+        function loadSlideshow() {
+            var client = new XMLHttpRequest();
+            client.onload = handler;
+            debugger
+            client.open("GET", "content.xml", false);
+            client.send();
+        }
       </script>
 </html>
