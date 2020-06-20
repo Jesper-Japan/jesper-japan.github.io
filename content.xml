@@ -4,10 +4,10 @@
         <src>dbz_abridged_op.mp3</src>
         <autoplay>true</autoplay>
     </backGroundMusic>
-    <images>
+    <slideshow>
         <image>
             <id>1</id>
             <path>AfrikanerPiger.jpg</path>
         </image>
-    </images>
+    </slideshow>
 </content>

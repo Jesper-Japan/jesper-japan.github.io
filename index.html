@@ -6,9 +6,9 @@
         <script type="text/javascript" src="https://cdn.pannellum.org/2.2/pannellum.js"></script>
     </head>
     <body>
-        <h3>Slideshow Assignment for 4 Colors</h3>,
-        <div id="img">
-            <img src="AfrikanerPiger.jpg" alt="African Girls" width="500" height="600">
+        <h3>Slideshow Assignment for 4 Colors</h3>
+        <div id="imgContainer">
+            <img id="img" width="500" height="600">
         </div>
         <div id="btns">
             <button>prev</button>
@@ -18,7 +18,6 @@
     </body>
     <script language="JavaScript">
         function loadBgmFromXml(data) {
-            debugger
             if(data.getElementsByTagName("src")[0].textContent) {
                 var audio = new Audio(data.getElementsByTagName("src")[0].textContent);
                 audio.play();
@@ -29,7 +28,18 @@
         }
 
         function loadImagesFromXml(data) {
-        // taking care of data
+        // taking care of data     
+        if(data.getElementsByTagName("image")[0].textContent) {
+                var img = document.getElementById('img');
+                var newImg = new Image;
+                newImg.onload = function() {
+                    img.src = this.src;
+                }
+                newImg.src = data.getElementsByTagName("image")[0].getElementsByTagName("path")[0].textContent;
+            } else {
+                // No image available - write sad message on screen
+
+            }
 
         }
 
