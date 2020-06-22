@@ -87,6 +87,10 @@
                 this.responseXML != null) {
                 if(this.responseXML.getElementsByTagName("slideshow")[0] != null) {
                     loadslideshowFromXml(this.responseXML.getElementsByTagName("slideshow")[0]);
+                    var nextBtn = document.getElementById("nextBtn");
+                    var prevBtn = document.getElementById("prevBtn");
+                    nextBtn.removeAttribute("hidden");            
+                    prevBtn.removeAttribute("hidden");
                 } else {
                     debugger
                     // No slides 
@@ -110,10 +114,6 @@
             client.onload = handler;
             client.open("GET", "content.xml", false);
             client.send();
-            var nextBtn = document.getElementById("nextBtn");
-            var prevBtn = document.getElementById("prevBtn");
-            nextBtn.removeAttribute("hidden");            
-            prevBtn.removeAttribute("hidden");
         }
       </script>
 </html>
