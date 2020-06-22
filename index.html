@@ -78,6 +78,7 @@
             if(data.getElementsByTagName("src")[0].textContent) {
                 audioPlayer = new Audio(data.getElementsByTagName("src")[0].textContent);
                 audioPlayer.loop = true;
+                audioPlayer.volume = 0.8;
                 audioPlayer.play();
             } else {
                 // No music available - write sad message on screen
@@ -114,9 +115,9 @@
                 if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
                     loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
                     var volUpBtn = document.getElementById("volUpBtn");
-                    var VolDownBtn = document.getElementById("VolDownBtn");
+                    var volDownBtn = document.getElementById("volDownBtn");
                     volUpBtn.removeAttribute("hidden");            
-                    VolDownBtn.removeAttribute("hidden");
+                    volDownBtn.removeAttribute("hidden");
                 } else {
                     debugger
                     // No music available
