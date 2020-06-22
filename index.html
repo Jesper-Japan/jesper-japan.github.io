@@ -11,8 +11,8 @@
             <img id="img" width="500" height="600" hidden="true">
         </div>
         <div id="btns">
-            <button id="prevBtn" onclick="prevImage(this)">Prev</button>
-            <button id="nextBtn" onclick="nextImage(this)">Next</button>
+            <button id="prevBtn" onclick="prevImage(this)" hidden="true">Prev</button>
+            <button id="nextBtn" onclick="nextImage(this)" hidden="true">Next</button>
             <button onclick="loadSlideshow(this)">start slideshow</button>
         </div>
     </body>
@@ -40,9 +40,7 @@
                 }
                 if(currentSlide == 1) {
                     var prevBtn = document.getElementById("prevBtn");
-                    debugger
                     prevBtn.disabled = false;
-                    prevBtn.removeAttribute("disabled");
                 }
             }
         }
@@ -56,9 +54,7 @@
                 }
                 if(currentSlide == slideshowLength - 2) {
                     var nextBtn = document.getElementById("nextBtn");
-                    debugger
                     nextBtn.disabled = false;
-                    nextBtn.removeAttribute("disabled");
                 }
             }
         }
@@ -111,6 +107,10 @@
 
         function loadSlideshow(btn) {
             btn.hidden = true;
+            var nextBtn = document.getElementById("nextBtn");
+            var prevBtn = document.getElementById("prevBtn");
+            nextBtn.removeAttribute("hidden");            
+            prevBtn.removeAttribute("hidden");
             var client = new XMLHttpRequest();
             client.onload = handler;
             client.open("GET", "content.xml", false);
