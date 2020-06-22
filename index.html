@@ -2,18 +2,17 @@
     <head>
         <meta charset="utf-8">
         <title>Slideshow Assignment</title>
-        <link rel="stylesheet" href="https://cdn.pannellum.org/2.2/pannellum.css"/>
-        <script type="text/javascript" src="https://cdn.pannellum.org/2.2/pannellum.js"></script>
+        <link rel="stylesheet" href="Slideshow.css"/>
     </head>
     <body>
         <h3>Slideshow Assignment for 4 Colors</h3>
         <div id="imgContainer">
-            <img id="img" width="500" height="600" hidden="true">
+            <img id="img" width="500" height="600" hidden>
         </div>
         <div id="btns">
-            <button id="prevBtn" onclick="prevImage(this)" hidden="true">Prev</button>
-            <button id="nextBtn" onclick="nextImage(this)" hidden="true">Next</button>
-            <button onclick="loadSlideshow(this)">start slideshow</button>
+            <button id="prevBtn" class="navBtn" onclick="prevImage(this)" hidden>Prev</button>
+            <button id="nextBtn" class="navBtn" onclick="nextImage(this)" hidden>Next</button>
+            <button class="startBtn" onclick="loadSlideshow(this)">Start slideshow</button>
         </div>
     </body>
     <script language="JavaScript">
@@ -107,14 +106,14 @@
 
         function loadSlideshow(btn) {
             btn.hidden = true;
-            var nextBtn = document.getElementById("nextBtn");
-            var prevBtn = document.getElementById("prevBtn");
-            nextBtn.removeAttribute("hidden");            
-            prevBtn.removeAttribute("hidden");
             var client = new XMLHttpRequest();
             client.onload = handler;
             client.open("GET", "content.xml", false);
             client.send();
+            var nextBtn = document.getElementById("nextBtn");
+            var prevBtn = document.getElementById("prevBtn");
+            nextBtn.removeAttribute("hidden");            
+            prevBtn.removeAttribute("hidden");
         }
       </script>
 </html>

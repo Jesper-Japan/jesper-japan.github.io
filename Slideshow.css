@@ -1,0 +1,26 @@
+
+.navBtn {
+    border-radius: 12px;
+    border: 2px solid black;
+    padding: 5px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.startBtn {
+    border-radius: 12px;
+    border: 2px solid black;
+    padding: 5px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 50px;
+}
+
+body{
+    padding: 25px;
+}
