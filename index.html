@@ -88,7 +88,7 @@
         function loadBgmFromXml(data) {
             if(data.getElementsByTagName("src")[0].textContent) {
                 audioPlayer = new Audio(data.getElementsByTagName("src")[0].textContent);
-                audioPlayer.loop = true;
+                audioPlayer.loop = new Audio(data.getElementsByTagName("autoplay")[0].textContent);
                 audioPlayer.volume = 0.7;
                 audioPlayer.play();
             } else {
