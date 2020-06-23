@@ -15,6 +15,7 @@
             <button id="nextBtn" class="navBtn" onclick="nextImage(this)" hidden>Next</button>
             <button id="volDownBtn" class="navBtn" onclick="volDown()" hidden><i class="fa fa-volume-down" aria-hidden="true"></i></button>
             <button id="volUpBtn" class="navBtn" onclick="volUp()" hidden><i class="fa fa-volume-up" aria-hidden="true"></i></button>
+            <button id="musicPlayPauseBtn" class="navBtn" onclick="musicPlayPause(this)" hidden><i id="3" class="fa fa-play" aria-hidden="true"></i></button>
             <button class="startBtn" onclick="loadSlideshow(this)">Start slideshow</button>
         </div>
     </body>
@@ -63,14 +64,24 @@
         }
 
         function volDown() {
-            if(audioPlayer.volume > 0.04) {
-                audioPlayer.volume -= 0.04;
+            if(audioPlayer.volume > 0.0) {
+                audioPlayer.volume -= 0.1;
             }
         }
 
         function volUp() {
-            if(audioPlayer.volume < 0.97) {
-                audioPlayer.volume += 0.04;
+            if(audioPlayer.volume < 1.0) {
+                audioPlayer.volume += 0.1;
+            }
+        }
+
+        function musicPlayPause(btn) {
+            if(audioPlayer.paused == true) {
+                audioPlayer.play();
+                btn.childNodes[0].className = "fa fa-play"
+            } else {
+                audioPlayer.pause();
+                btn.childNodes[0].className = "fa fa-pause"
             }
         }
 
@@ -78,7 +89,7 @@
             if(data.getElementsByTagName("src")[0].textContent) {
                 audioPlayer = new Audio(data.getElementsByTagName("src")[0].textContent);
                 audioPlayer.loop = true;
-                audioPlayer.volume = 0.8;
+                audioPlayer.volume = 0.7;
                 audioPlayer.play();
             } else {
                 // No music available - write sad message on screen
@@ -116,6 +127,8 @@
                     loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
                     var volUpBtn = document.getElementById("volUpBtn");
                     var volDownBtn = document.getElementById("volDownBtn");
+                    var musicPlayPauseBtn = document.getElementById("musicPlayPauseBtn");
+                    musicPlayPauseBtn.removeAttribute("hidden");
                     volUpBtn.removeAttribute("hidden");            
                     volDownBtn.removeAttribute("hidden");
                 } else {
