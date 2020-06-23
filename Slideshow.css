@@ -25,6 +25,18 @@
     margin-left: 50px;
 }
 
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline;
+    margin-left: 10px;
+}
+
+.fa-exclamation-triangle {
+    color: red;
+}
+
 body{
     padding: 25px;
 }

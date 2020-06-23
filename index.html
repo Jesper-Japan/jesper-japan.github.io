@@ -15,8 +15,11 @@
             <button id="nextBtn" class="navBtn" onclick="nextImage(this)" hidden>Next</button>
             <button id="volDownBtn" class="navBtn" onclick="volDown()" hidden><i class="fa fa-volume-down" aria-hidden="true"></i></button>
             <button id="volUpBtn" class="navBtn" onclick="volUp()" hidden><i class="fa fa-volume-up" aria-hidden="true"></i></button>
-            <button id="musicPlayPauseBtn" class="navBtn" onclick="musicPlayPause(this)" hidden><i id="3" class="fa fa-play" aria-hidden="true"></i></button>
+            <button id="musicPlayPauseBtn" class="navBtn" onclick="musicPlayPause(this)" hidden><i id="3" class="fa fa-pause" aria-hidden="true"></i></button>
             <button class="startBtn" onclick="loadSlideshow(this)">Start slideshow</button>
+        </div>
+        <div id="errorMessageContainer" hidden>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"><div class="errorMessage" id="errorMessage"></div></i>
         </div>
     </body>
     <script language="JavaScript">
@@ -78,11 +81,18 @@
         function musicPlayPause(btn) {
             if(audioPlayer.paused == true) {
                 audioPlayer.play();
-                btn.childNodes[0].className = "fa fa-play"
+                btn.childNodes[0].className = "fa fa-pause"
             } else {
                 audioPlayer.pause();
-                btn.childNodes[0].className = "fa fa-pause"
+                btn.childNodes[0].className = "fa fa-play"
             }
+        }
+
+        function displayErrorMessage(errorMessage) {
+            var errorMessageDiv = document.getElementById("errorMessage");
+            errorMessageDiv.textContent = errorMessage;            
+            var errorMessageContainer = document.getElementById("errorMessageContainer");
+            errorMessageContainer.removeAttribute("hidden");
         }
 
         function loadBgmFromXml(data) {
@@ -92,8 +102,7 @@
                 audioPlayer.volume = 0.7;
                 audioPlayer.play();
             } else {
-                // No music available - write sad message on screen
-
+                displayErrorMessage("Wasn't able to find and play background music");
             }
         }
 
@@ -105,8 +114,8 @@
                 }
                 slideshowLength = images.length;
                 displayPicture(slides[0]);
-            }else {
-                // No image available - write sad message on screen
+            } else {
+                displayErrorMessage("Wasn't able to to find and play slideshow")
             }
         }
 
@@ -120,8 +129,8 @@
                     nextBtn.removeAttribute("hidden");            
                     prevBtn.removeAttribute("hidden");
                 } else {
-                    debugger
-                    // No slides 
+                    // No slideshow available
+                    displayErrorMessage("Wasn't able to to load slideshow")
                 }
                 if(this.responseXML.getElementsByTagName("backGroundMusic")[0] != null) {
                     loadBgmFromXml(this.responseXML.getElementsByTagName("backGroundMusic")[0]);
@@ -132,13 +141,13 @@
                     volUpBtn.removeAttribute("hidden");            
                     volDownBtn.removeAttribute("hidden");
                 } else {
-                    debugger
                     // No music available
+                    displayErrorMessage("Wasn't able to to load background music")
                 }
 
             } else {
-                debugger
                 // Couldn't find or parse xml file 
+                displayErrorMessage("Wasn't able to to load media")
             }
         }
 
